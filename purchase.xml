@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+
+        <record model="ir.ui.view" id="purchase_to_draft_start_view_form">
+            <field name="model">purchase_to_draft.start</field>
+            <field name="type">form</field>
+            <field name="name">purchase_to_draft_start_form</field>
+        </record>
+
+        <record model="ir.action.wizard" id="wizard_draft_purchase">
+            <field name="name">Draft Purchase</field>
+            <field name="wiz_name">purchase_to_draft</field>
+        </record>
+
+        <record model="ir.action.keyword" id="act_wizard_draft_purchase_keyword">
+            <field name="keyword">form_action</field>
+            <field name="model">purchase.purchase,-1</field>
+            <field name="action" ref="wizard_draft_purchase"/>
+        </record>
+        <!-- Group -->
+        <record model="res.group" id="group_purchase_draft">
+            <field name="name">Nodux - Compra a Borrador</field>
+        </record>
+
+        <record model="res.user-res.group"
+            id="user_admin_group_purchase_draft">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_purchase_draft"/>
+        </record>
+
+        <record model="res.user-res.group"
+            id="user_trigger_group_purchase_draft">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_purchase_draft"/>
+        </record>
+
+
+    </data>
+</tryton>

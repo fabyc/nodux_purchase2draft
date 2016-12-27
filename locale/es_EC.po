@@ -1,0 +1,63 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:nodux.account.in.invoice.to.draft.start,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:purchase_to_draft.start,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "model:ir.action,name:"
+msgid "Draft Sale"
+msgstr "Pasar a borrador"
+
+msgctxt "model:ir.action,name:wizard_draft_purchase"
+msgid "Draft Purchase"
+msgstr "Pasar compra a Borrador"
+
+msgctxt "model:nodux.account.in.invoice.to.draft.start,name:"
+msgid "In Invoice to Draft Start"
+msgstr "Factura Compra a Borrador"
+
+msgctxt "model:purchase_to_draft.start,name:"
+msgid "Purchase to Draft Start"
+msgstr "Compra a Borrador"
+
+msgctxt "model:res.group,name:group_purchase_draft"
+msgid "Nodux - Compras a borrador"
+msgstr ""
+
+msgctxt "view:nodux.account.in.invoice.to.draft.start:"
+msgid "Are you sure to draft those/this purchase(s)?"
+msgstr "¿Está seguro de pasar a borrador esta/estas compra(s)?"
+
+msgctxt "view:nodux.account.in.invoice.to.draft.start:"
+msgid "Draft Purchase"
+msgstr "Pasar compra a borrador"
+
+msgctxt "view:purchase_to_draft.start:"
+msgid "Are you sure to draft those/this purchase(s)?"
+msgstr "¿Está seguro de pasar a borrador esta/estas compra(s)?"
+
+msgctxt "view:purchase_to_draft.start:"
+msgid "Draft Purchase"
+msgstr "Pasar compra a Borrador"
+
+msgctxt "wizard_button:nodux.account.in.invoice.to.draft,start,draft_:"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt "wizard_button:nodux.account.in.invoice.to.draft,start,end:"
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgctxt "wizard_button:purchase_to_draft,start,draft_:"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt "wizard_button:purchase_to_draft,start,end:"
+msgid "Cancel"
+msgstr "Cancelar"
