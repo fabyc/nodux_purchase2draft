@@ -81,11 +81,10 @@ class PurchasetoDraft(Wizard):
                                 cursor.execute('DELETE FROM account_withholding WHERE id =%s' %withholding.id)
                                 cursor.execute('DELETE FROM account_withholding_tax WHERE move = %s' %withholding.move.id)
 
-                if invoice.move:
-                    cursor.execute('DELETE FROM account_move_line WHERE move = %s' %invoice.move.id)
-                    cursor.execute('DELETE FROM account_move WHERE id = %s' %invoice.move.id)
+                    if invoice.move:
+                            cursor.execute('DELETE FROM account_move_line WHERE move = %s' %invoice.move.id)
+                            cursor.execute('DELETE FROM account_move WHERE id = %s' %invoice.move.id)
 
-                if invoice:
                     cursor.execute('DELETE FROM account_invoice WHERE id = %s' %invoice.id)
 
                 for move in purchase.moves:
