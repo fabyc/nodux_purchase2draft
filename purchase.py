@@ -43,10 +43,12 @@ class PurchasetoDraft(Wizard):
         Purchase = pool.get('purchase.purchase')
         Invoice = pool.get('account.invoice')
         Withholding = Pool().get('account.withholding')
+        Module = pool.get('ir.module.module')
         purchases = Purchase.browse(Transaction().context['active_ids'])
         ModelData = pool.get('ir.model.data')
         User = pool.get('res.user')
         Group = pool.get('res.group')
+        if_withholdings_module = Module.search([('name', '=', 'nodux_account_withholding_in_ec'), ('state', '=', 'installed')])
 
         def in_group():
             origin = str(purchases)
@@ -69,17 +71,18 @@ class PurchasetoDraft(Wizard):
                 purchase.state = 'draft'
                 cursor = Transaction().cursor
                 for invoice in purchase.invoices:
-                    withholdings = Withholding.search([('number', '=', invoice.ref_withholding), ('fisic', '=', False)])
-                    if withholdings:
-                        for withholding in withholdings:
-                            if withholding.estado_sri == 'AUTORIZADO':
-                                self.raise_user_error('No puede reversar una factura que ya ha sido AUTORIZADA')
-                            else:
-                                cursor.execute('DELETE FROM account_move_line WHERE move = %s' %withholding.move.id)
-                                cursor.execute('DELETE FROM account_move WHERE id = %s' %withholding.move.id)
+                    if if_withholdings_module:
+                        withholdingss = Withholding.search([('number', '=', invoice.ref_withholding), ('fisic', '=', False)])
+                        if withholdings:
+                            for withholding in withholdings:
+                                if withholding.estado_sri == 'AUTORIZADO':
+                                    self.raise_user_error('No puede reversar una factura que ya ha sido AUTORIZADA')
+                                else:
+                                    cursor.execute('DELETE FROM account_move_line WHERE move = %s' %withholding.move.id)
+                                    cursor.execute('DELETE FROM account_move WHERE id = %s' %withholding.move.id)
 
-                                cursor.execute('DELETE FROM account_withholding WHERE id =%s' %withholding.id)
-                                cursor.execute('DELETE FROM account_withholding_tax WHERE withholding = %s' %withholding.id)
+                                    cursor.execute('DELETE FROM account_withholding WHERE id =%s' %withholding.id)
+                                    cursor.execute('DELETE FROM account_withholding_tax WHERE withholding = %s' %withholding.id)
 
                     if invoice.move:
                             cursor.execute('DELETE FROM account_move_line WHERE move = %s' %invoice.move.id)
